@@ -1,0 +1,198 @@
+---
+title: "Problem Set 1"
+author: "Val Stacey"
+date: "09/07/2025"
+format: html
+---
+
+
+
+
+\newpage
+
+### Question 1
+
+Un-comment and fix the following code to make it run. Note: You are only using numeric values in this question.
+
+```{r question_1}
+my_variable <-  2
+
+my_other_variable <- 8
+
+my_variable + my_other_variable
+```
+
+\newpage
+
+### Question 2
+
+Create four variables with the following data types:
+
+1.  character
+2.  numeric
+3.  integer
+4.  logical
+
+```{r question_2}
+
+character <- c("a character", "another character")
+numeric <- as.numeric(c(123.456, 67.89))
+integer <- as.integer(c(123.456, 67.89))
+logical <- as.logical(c("TRUE", "FALSE"))
+
+
+df_q2 <- data.frame(
+  character = character,
+  numeric   = numeric,
+  integer   = integer,
+  logical   = logical
+)
+
+str(df_q2)
+
+df_q2
+
+```
+
+\newpage
+
+### Question 3
+
+Using the variables x and y below, perform the following comparisons.
+
+```{r question_3}
+x <- 10
+y <- 11
+
+### is x equal to y? 
+
+x == y
+
+### does x not equal y? 
+
+x != y
+
+### is x greater than or equal to y?
+
+x >= y
+
+```
+
+\newpage
+
+### Question 4
+
+R is a powerful calculator that can help us become more efficient epidemiologist.
+
+Recall that an odds ratio is calculated by the following: (a / c)/(b / d) or (a \* d)/(b \* c).
+
+Suppose a number of people became ill after exposure to cheesecake. Our two levels of exposure to cheesecake are (1) those who ate cheesecake and (2) those who did not eat cheesecake.
+
+```{r 2x2 table}
+# run the following code to view our 2x2 table
+# notice how we used one of R's base function called "matrix"
+# we directly inputted our values in a list format c("","",...) 
+# added the argument ncol = 2 to split the list into two columns
+# added the argument byrow = TRUE to first complete the rows then the columns
+
+cheesecake_exposure <- matrix(c(15, 36, 18, 25), ncol = 2, byrow = TRUE)
+# directly named the two columns
+colnames(cheesecake_exposure) <- c("Cases", "Controls")
+# directly named the two rows
+rownames(cheesecake_exposure) <- c("Exposed", "Not Exposed")
+# executed our variable to view the output
+cheesecake_exposure
+```
+
+Calculate the odds ratio of becoming ill due to cheesecake. Save the odds ratio as an object in your environment.
+
+```{r question_4}
+
+a <- 15
+b <- 36
+c <- 18
+d <- 25
+
+OR <- (a*d) / (b*c)
+OR
+
+```
+
+\newpage
+
+### Question 5
+
+Create two vectors with the following numeric values in the presented order. Then, add them together.
+
+-   Use the c() function for the first vector: 1, 2, 3, 4, 5
+-   Use the colon (":") operator for the second vector: 51, 52, 53, 54, 55
+
+As a logic check, you should expect an output with one vector: 52, 54, 56, 58, 60
+
+```{r question_5}
+
+vec_1 <- c(1,2,3,4,5)
+vec_2 <- 51:55
+
+vec_sum <- vec_1 + vec_2
+
+vec_sum
+
+```
+
+\newpage
+
+### Question 6
+
+(a) Write a line of code that will pull up the documentation for the base R function called "round".
+(b) What arguments does the function require?
+(c) What is the default value for the second argument?
+
+```{r question_6, eval = FALSE}
+?round()
+```
+
+|
+
+**(b)** : 
+
+`round()` function requires two arguments: `x` and `digits`, where: 
+
+*  `x`: any numeric vector
+*  `digits`: integer indicating number of decimal places to round `x` by 
+
+|
+
+**(c)** : the default value for `digits`, if not specified, is **0** (i.e. it will round to the nearest whole number - no decimals)
+
+|
+
+### Question 7
+
+Write a single line of code to divide 377 by 120 and round the result to three decimal places. Save this rounded result to a variable called "ptolemy_pi" in your environment. Test if ptolemy_pi is equal to R's built-in approximation of pi (stored by default as the object "pi").
+
+```{r question_7}
+
+r_pi <- pi
+r_pi
+
+ptolemy_pi <- round((377/120), 3)
+ptolemy_pi
+
+ptolemy_pi == r_pi
+
+
+```
+
+\newpage
+
+### Question 8
+
+Use an if/else statement to print out "greater than 1" if the odds of becoming ill due to cheesecake (from question 4) is higher than 1.0. Print "not greater than 1" if the odds are not higher than 1.0.
+
+```{r question_8}
+q8 <- ifelse(OR > 1, "greater than 1", "not greater than 1")
+q8
+```
+
+
