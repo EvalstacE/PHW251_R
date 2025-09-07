@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Val Stacey">
+<meta name="dcterms.date" content="2025-09-07">
+
+<title>PHW251 Problem Set 2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="vs_problem_set_3_files/libs/clipboard/clipboard.min.js"></script>
+<script src="vs_problem_set_3_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="vs_problem_set_3_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="vs_problem_set_3_files/libs/quarto-html/popper.min.js"></script>
+<script src="vs_problem_set_3_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="vs_problem_set_3_files/libs/quarto-html/anchor.min.js"></script>
+<link href="vs_problem_set_3_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="vs_problem_set_3_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="vs_problem_set_3_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="vs_problem_set_3_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="vs_problem_set_3_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">PHW251 Problem Set 2</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Val Stacey </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 7, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div style="page-break-after: always;"></div>
+<section id="question-1" class="level3">
+<h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<p>In this question you will create a data frame. Below is code for how to do this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data frame with three columns and three rows</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># notice how we start with the column name and then the row values</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># each column, in this example, has three values</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df_example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">"column_1"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"column_2"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"string_1"</span>, <span class="st">"string_2"</span>, <span class="st">"2"</span>), </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                         <span class="co"># here we add an NA value due to missing data</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"column_3"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="st">"string_3"</span>, <span class="dv">50</span>))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>df_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  column_1 column_2 column_3
+1        1 string_1     &lt;NA&gt;
+2        2 string_2 string_3
+3        3        2       50</code></pre>
+</div>
+</div>
+<p>Now you try! Create a data frame with three columns and the following values:</p>
+<ul>
+<li><p>Column 1: ID</p>
+<ul>
+<li>1, 2, 3</li>
+</ul></li>
+<li><p>Column 2: NAME</p>
+<ul>
+<li>“Pam”, “Jim”, “Dwight”</li>
+</ul></li>
+<li><p>Column 3: AGE</p>
+<ul>
+<li>40, NA, 48</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>office_df <span class="ot">&lt;-</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"ID"</span> <span class="ot">=</span> <span class="fu">as.integer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>), </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"NAME"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Pam"</span>, <span class="st">"Jim"</span>, <span class="st">"Dwight"</span>), </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>             <span class="st">"AGE"</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="dv">40</span>, <span class="cn">NA</span>, <span class="dv">48</span>))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>office_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ID   NAME AGE
+1  1    Pam  40
+2  2    Jim  NA
+3  3 Dwight  48</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="question-2" class="level3">
+<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<p>With your new data frame created in the previous question, find the following values:</p>
+<ul>
+<li><p>length</p></li>
+<li><p>typeof</p></li>
+<li><p>class</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(office_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(office_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "list"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(office_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "data.frame"</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="question-3" class="level3">
+<h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
+<p>Create a data frame and a tibble that matches the image below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># by the way, you can load images into rmarkdown! Cool, right?!</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># here we use the knitr library (though there are multiple ways to load images)</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#library(knitr)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># notice that we specify the path to look within the current directory</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># by using the period: .</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># followed by a slash: / to pull the image file</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#knitr::include_graphics('table_replicate.png')</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="do">#########################################</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># I used this inline from quarto instead: </span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># ![table_replicate](table_replicate.png){width=60%}</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="do">#########################################</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="table_replicate.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>table_replicate</figcaption>
+</figure>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>q3_df <span class="ot">&lt;-</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">"data_id"</span> <span class="ot">=</span> <span class="fu">as.integer</span>(<span class="dv">101</span><span class="sc">:</span><span class="dv">105</span>), </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">"gender"</span> <span class="ot">=</span> <span class="fu">as.factor</span>(<span class="fu">c</span>(<span class="st">"female"</span>, <span class="st">"male"</span>, <span class="st">"non-binary"</span>, <span class="st">"male"</span>, <span class="st">"NA"</span>)),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>         <span class="st">"temperature"</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="dv">98</span>, <span class="fl">97.3</span>, <span class="fl">101.1</span>, <span class="fl">97.5</span>, <span class="fl">99.6</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        )  </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>q3_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  data_id     gender temperature
+1     101     female        98.0
+2     102       male        97.3
+3     103 non-binary       101.1
+4     104       male        97.5
+5     105         NA        99.6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>q3_tibble <span class="ot">&lt;-</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">"data_id"</span> <span class="ot">=</span> <span class="fu">as.integer</span>(<span class="dv">101</span><span class="sc">:</span><span class="dv">105</span>), </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">"gender"</span> <span class="ot">=</span> <span class="fu">as.factor</span>(<span class="fu">c</span>(<span class="st">"female"</span>, <span class="st">"male"</span>, <span class="st">"non-binary"</span>, <span class="st">"male"</span>, <span class="st">"NA"</span>)),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>         <span class="st">"temperature"</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="dv">98</span>, <span class="fl">97.3</span>, <span class="fl">101.1</span>, <span class="fl">97.5</span>, <span class="fl">99.6</span>))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>q3_tibble</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  data_id gender     temperature
+    &lt;int&gt; &lt;fct&gt;            &lt;dbl&gt;
+1     101 female            98  
+2     102 male              97.3
+3     103 non-binary       101. 
+4     104 male              97.5
+5     105 NA                99.6</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="question-4" class="level3">
+<h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
+<p><strong>What are the key differences between data frames and tibbles?</strong></p>
+<p>In a nutshell, tibbles <em>are</em> data frames, but with more modern default behaviors - sometimes making the rules a bit more stringent when it makes sense (like always returning a tibble when subsetting a tibble), and in other times giving them more flexibility (like allowing you to use spaces in column names).</p>
+<p>Tibble comes from the tidyverse, which essentially took the core R data frame and made some changes for improving flexibility, wrangling datasets, and readability:</p>
+<p><strong>Highlights from lecture:</strong></p>
+<ul>
+<li><p>tibbles to do automatically assign row names as data frames will</p></li>
+<li><p>tibbles allow you to have spaces in column names (dataframes do not). However, it’s really not a best practice to use spaces in column names, and they are generally only useful if you’re trying to export a “clean” table for a report or something.</p></li>
+<li><p>tibbles allow you to asign a vector of length 1 by automatically assigning the value to all rows. In a dataframe, it will usually spit you out an error along the lines of: “…vector length must be a length of X or Y, not 1…”</p></li>
+<li><p>tibbles have simpler and more streamlined ways of referencing columns. In the core dataframe, you have to subset with brackets and/or use the <code>df$col_name</code>. Sometimes the default behavior of a dataframe will simplify to another format like a vector. Tibble will never do that - it will always give you a tibble in return which is really nice and avoids confusion.</p></li>
+<li><p>tibble improved readibility for console outputs: it defaults to only showing the first 10 rows. In a dataframe, it will usually print out a large number of rows, unless you go a step further and use the <code>head(df, 10)</code> function. But this is just built-into tibble as a default for simplicity</p></li>
+</ul>
+<p><strong>Why are tibbles preferable?</strong></p>
+<p>Tibbles are touted as simpler, more consistent, more predictable, safer, more user-friendly, data frames.</p>
+<p>Tidyverse is the ruler of data management in R - so there’s advantage to using it simply for the sake of all other R coders being able to easily understand and reproduce your code.</p>
+<p>Admittedly, I don’t use them as much as I should. Like R itself, my default behaviors were “hard-coded” many years ago and dataframes have been my go-to. I appreciate this question as it helped me understand the many benefits of tibbles (and why I should make them my default instead of dataframes, unless I truly need a data frame for a certain reason).</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="question-5" class="level3">
+<h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
+<p>We just found out results for COVID testing and want to add it to our data. Using the tibble you created in Question 3, add the following test results to a new column called “results”.</p>
+<ul>
+<li>101 = NEGATIVE</li>
+<li>102 = POSITIVE</li>
+<li>103 = NEGATIVE</li>
+<li>104 = NEGATIVE</li>
+<li>105 = NEGATIVE</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>q3_tibble <span class="ot">&lt;-</span> q3_tibble <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">results =</span> <span class="fu">as.factor</span>(<span class="fu">c</span>(<span class="st">"NEGATIVE"</span>, <span class="st">"POSITIVE"</span>, <span class="fu">rep</span>(<span class="st">"NEGATIVE"</span>, <span class="dv">3</span>)))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>q3_tibble </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  data_id gender     temperature results 
+    &lt;int&gt; &lt;fct&gt;            &lt;dbl&gt; &lt;fct&gt;   
+1     101 female            98   NEGATIVE
+2     102 male              97.3 POSITIVE
+3     103 non-binary       101.  NEGATIVE
+4     104 male              97.5 NEGATIVE
+5     105 NA                99.6 NEGATIVE</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="question-6" class="level3">
+<h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
+<p>You find out there was an error in data collection and subject 102’s temperature is actually 98.3, not 97.3. Correct the value in your data frame.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>q3_tibble <span class="ot">&lt;-</span> q3_tibble <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperature =</span> <span class="fu">if_else</span>(data_id <span class="sc">==</span> <span class="dv">102</span>, <span class="fl">98.3</span>, temperature)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>q3_tibble </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  data_id gender     temperature results 
+    &lt;int&gt; &lt;fct&gt;            &lt;dbl&gt; &lt;fct&gt;   
+1     101 female            98   NEGATIVE
+2     102 male              98.3 POSITIVE
+3     103 non-binary       101.  NEGATIVE
+4     104 male              97.5 NEGATIVE
+5     105 NA                99.6 NEGATIVE</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="question-7" class="level3">
+<h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
+<p>Load the “stds-by-disease-county-year-sex.csv” data set, which is in the data folder.</p>
+<p>You can find more information about this data set from the California Open Data Portal:</p>
+<p><a href="https://data.ca.gov/dataset/stds-in-california-by-disease-county-year-and-sex" class="uri">https://data.ca.gov/dataset/stds-in-california-by-disease-county-year-and-sex</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>std_df <span class="ot">&lt;-</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read.csv</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">file =</span> <span class="st">"../data/stds-by-disease-county-year-sex.csv"</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">skip =</span> <span class="dv">3</span>,      </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">na.strings =</span> <span class="st">""</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You may have noticed that there are empty cells in the first three rows. Modify your code above (if you haven’t already) to remove these rows.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="question-8" class="level3">
+<h3 class="anchored" data-anchor-id="question-8">Question 8</h3>
+<p>Let’s explore this STD data set. <strong>Use code</strong> to find the values requested below. Insert R chunks as needed.</p>
+<p>How many rows?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(std_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9558</code></pre>
+</div>
+</div>
+<p>How many columns?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(std_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+</div>
+<p>What are the column names?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(std_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Disease"    "County"     "Year"       "Sex"        "Cases"     
+[6] "Population"</code></pre>
+</div>
+</div>
+<p>What are the column types?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(std_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   9558 obs. of  6 variables:
+ $ Disease   : chr  "Chlamydia" "Chlamydia" "Chlamydia" "Chlamydia" ...
+ $ County    : chr  "California" "California" "California" "California" ...
+ $ Year      : int  2001 2001 2001 2002 2002 2002 2003 2003 2003 2004 ...
+ $ Sex       : chr  "Female" "Male" "Total" "Female" ...
+ $ Cases     : int  75941 24885 101590 81583 28521 110759 85153 31007 116385 89438 ...
+ $ Population: int  17339700 17173042 34512742 17554666 17383624 34938290 17782868 17606060 35388928 17968347 ...</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="question-9" class="level3">
+<h3 class="anchored" data-anchor-id="question-9">Question 9</h3>
+<p>You want to dig deeper into the data and focus on the years 2015 - 2018. Use the <code>which()</code> function to index which rows fit this year range and assign the results to a new data frame. To check whether this was done correctly you should expect the following dimensions: 2124 rows x 6 columns</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>std_filtered_base <span class="ot">&lt;-</span> std_df[<span class="fu">which</span>(std_df<span class="sc">$</span>Year <span class="sc">&gt;=</span> <span class="dv">2015</span> <span class="sc">&amp;</span> std_df<span class="sc">$</span>Year <span class="sc">&lt;=</span> <span class="dv">2018</span>), ]</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># prefer dplyr filter() if possible: </span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>std_filtered <span class="ot">&lt;-</span> std_df <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">&gt;=</span> <span class="dv">2015</span> <span class="sc">&amp;</span> Year <span class="sc">&lt;=</span> <span class="dv">2018</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(std_filtered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Disease             County               Year          Sex           
+ Length:2124        Length:2124        Min.   :2015   Length:2124       
+ Class :character   Class :character   1st Qu.:2016   Class :character  
+ Mode  :character   Mode  :character   Median :2016   Mode  :character  
+                                       Mean   :2016                     
+                                       3rd Qu.:2017                     
+                                       Max.   :2018                     
+                                                                        
+     Cases          Population      
+ Min.   :     0   Min.   :     557  
+ 1st Qu.:    26   1st Qu.:   30184  
+ Median :   141   Median :  132770  
+ Mean   :  2412   Mean   :  891753  
+ 3rd Qu.:   772   3rd Qu.:  442039  
+ Max.   :232181   Max.   :39825181  
+ NA's   :200                        </code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="question-10" class="level3">
+<h3 class="anchored" data-anchor-id="question-10">Question 10</h3>
+<p>Your colleague is interested in this data set but hasn’t setup their git repository. They ask you to help them out by exporting this new data set as a .csv file. Place your output in the /data folder.</p>
+<p>As a test, you can try to read in the .csv you created to make sure everything looks correct.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(std_filtered, <span class="st">"../data/std_filtered.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>check <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"../data/std_filtered.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="question-11" class="level3">
+<h3 class="anchored" data-anchor-id="question-11">Question 11</h3>
+<p>Look up how to use the unique() function and run it on the County column of the STD data set. You should see a total of 59 counties.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(std_df<span class="sc">$</span>County)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "California"      "Alameda"         "Alpine"          "Amador"         
+ [5] "Butte"           "Calaveras"       "Colusa"          "Contra Costa"   
+ [9] "Del Norte"       "El Dorado"       "Fresno"          "Glenn"          
+[13] "Humboldt"        "Imperial"        "Inyo"            "Kern"           
+[17] "Kings"           "Lake"            "Lassen"          "Los Angeles"    
+[21] "Madera"          "Marin"           "Mariposa"        "Mendocino"      
+[25] "Merced"          "Modoc"           "Mono"            "Monterey"       
+[29] "Napa"            "Nevada"          "Orange"          "Placer"         
+[33] "Plumas"          "Riverside"       "Sacramento"      "San Benito"     
+[37] "San Bernardino"  "San Diego"       "San Francisco"   "San Joaquin"    
+[41] "San Luis Obispo" "San Mateo"       "Santa Barbara"   "Santa Clara"    
+[45] "Santa Cruz"      "Shasta"          "Sierra"          "Siskiyou"       
+[49] "Solano"          "Sonoma"          "Stanislaus"      "Sutter"         
+[53] "Tehama"          "Trinity"         "Tulare"          "Tuolumne"       
+[57] "Ventura"         "Yolo"            "Yuba"           </code></pre>
+</div>
+</div>
+<p>You decide to focus on one county. Subset your data for one county of your choice.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>yolo_cnty <span class="ot">&lt;-</span> std_df <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(County <span class="sc">==</span> <span class="st">"Yolo"</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(yolo_cnty<span class="sc">$</span>County)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Yolo"</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="question-12" class="level3">
+<h3 class="anchored" data-anchor-id="question-12">Question 12</h3>
+<p>You’re very interested in finding the rate of cases per 100,000 population. In your subset data frame (from the previous question), create a new column called “rate” with the calculated values.</p>
+<p>Rate = (Cases / Population) * 100,000</p>
+<p>Hint: R allows you to use manipulate variables within a data frame to calculate new values so long as the rows and data types match up. For example: <code>df$var3 &lt;- df$var1 + df$var2</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>yolo_cnty <span class="ot">&lt;-</span> yolo_cnty <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Rate =</span> (Cases <span class="sc">/</span> Population) <span class="sc">*</span> <span class="dv">100000</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(yolo_cnty, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Disease County Year    Sex Cases Population      Rate
+1  Chlamydia   Yolo 2001 Female   227      89655 253.19279
+2  Chlamydia   Yolo 2001   Male    57      85447  66.70802
+3  Chlamydia   Yolo 2001  Total   287     175102 163.90447
+4  Chlamydia   Yolo 2002 Female   280      91782 305.07071
+5  Chlamydia   Yolo 2002   Male    69      87489  78.86706
+6  Chlamydia   Yolo 2002  Total   354     179271 197.46641
+7  Chlamydia   Yolo 2003 Female   310      93337 332.12981
+8  Chlamydia   Yolo 2003   Male    66      88994  74.16230
+9  Chlamydia   Yolo 2003  Total   380     182331 208.41217
+10 Chlamydia   Yolo 2004 Female   335      95101 352.25707</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="question-13" class="level3">
+<h3 class="anchored" data-anchor-id="question-13">Question 13</h3>
+<p>You see a classmate post the comment below in an Ed Discussion.</p>
+<p>I can’t get my file to import right:</p>
+<p>rm(list = ls())</p>
+<p># step 1 find file</p>
+<p># step 2 get file into r folder</p>
+<p># step 3 check with classmate</p>
+<p>co2 &lt;- read_csv(file = “co2_mm_mlo.csv”, skip = 51, header = TRUE, row.names = NULL)</p>
+<p>Write a response to the poster and include at least three specific suggestions for them to include to make their response fit guidelines for repeatable examples.</p>
+<div style="page-break-after: always;"></div>
+<p>Hi classmate,</p>
+<p>Could you send the error or messages you’re getting in R? That would make it much easier to pinpoint where your issue is coming from.</p>
+<div class="line-block"></div>
+<p>In the meantime, here are a few things I would try:</p>
+<section id="the-easiest-fix-might-be-simply-changing-your-read_csv-to-read.csv" class="level5">
+<h5 class="anchored" data-anchor-id="the-easiest-fix-might-be-simply-changing-your-read_csv-to-read.csv">1. The easiest fix might be simply changing your <code>read_csv</code> to <code>read.csv</code> :</h5>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code: </span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  co2 &lt;- read_csv(file = "co2_mm_mlo.csv", skip = 51, header = TRUE, row.names = NULL)</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># change read_csv to read.csv : </span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>co2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"co2_mm_mlo.csv"</span>, <span class="at">skip =</span> <span class="dv">51</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">row.names =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="the-next-easiest-fix-might-be-that-the-file-name-in-your-code-does-not-match-exactly-what-you-save-it-as-in-your-folder" class="level5">
+<h5 class="anchored" data-anchor-id="the-next-easiest-fix-might-be-that-the-file-name-in-your-code-does-not-match-exactly-what-you-save-it-as-in-your-folder">2. The next easiest fix might be that the file name in your code does not match exactly what you save it as in your folder</h5>
+<p>For example, let’s say in your file folder:</p>
+<ul>
+<li>the file is actually named: <strong>“co2_mauna_mlo.csv”</strong></li>
+</ul>
+<p>but in the code, you’re telling R that it’s named: <strong>“co2_mm_mlo.csv”</strong> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>co2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"co2_mm_mlo.csv"</span>, <span class="at">skip =</span> <span class="dv">51</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">row.names =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If that’s the case, you’d see an error like this:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Warning in file(file, “rt”) : cannot open file ‘co2_mm_mlo.csv’: No such file or directory Error in file(file, “rt”) : cannot open the connection</p>
+</div>
+</div>
+<p>So all you’d have to do is update the code to make sure the names match exactly:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>co2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"co2_mauna_mlo.csv"</span>, <span class="at">skip =</span> <span class="dv">51</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">row.names =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="if-all-that-still-fails" class="level5">
+<h5 class="anchored" data-anchor-id="if-all-that-still-fails">If all that still fails…</h5>
+<p>… and you have:</p>
+<ul>
+<li>tried changing <code>read_csv</code> to: <code>read.csv</code></li>
+<li>you are certain the name of the file in your code matches <em>exactly</em> how it’s saved in your folder</li>
+</ul>
+<p>And you still get an error like this:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Warning in file(file, “rt”) : cannot open file ‘co2_mm_mlo.csv’: No such file or directory Error in file(file, “rt”) : cannot open the connection</p>
+</div>
+</div>
+<p>My next guess is that either:</p>
+<p><strong>(a) your current “working directory” is not set to the right spot</strong>, or</p>
+<p><strong>(b) the .csv file you’re trying to pull in is located in a different folder</strong></p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="a-what-is-your-current-working-directory-set-to" class="level4">
+<h4 class="anchored" data-anchor-id="a-what-is-your-current-working-directory-set-to">(a) What is your current working directory set to?</h4>
+<p>“working directory” is just fancy talk for <strong>‘folder’</strong></p>
+<p>So, <strong>what folder are you working out of?</strong></p>
+<p>Or more accurately would be to ask: what folder is <strong>R</strong> currently working out of?</p>
+<p>To answer that: Run <code>getwd()</code> and R will tell you where it’s brain is currently located:</p>
+<p>The output I get below will look different that yours, since it’s specific to my local computer, but hopefully it will give you a location you recognize and can make sense of:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:/Users/stace/GitHub Repositories/PHW251_R/problem_set_3"</code></pre>
+</div>
+</div>
+</section>
+<section id="is-that-the-same-folder-your-current-.qmd-file-is-saved-in" class="level4">
+<h4 class="anchored" data-anchor-id="is-that-the-same-folder-your-current-.qmd-file-is-saved-in">Is that the same folder your current .qmd file is saved in?</h4>
+<p>If not - make sure your working directory is set to the “problem_set_2” folder (or whatever folder you are working out of and saving your files to)</p>
+<p>The easiest way I have found to do that is to open the .qmd for the problem set you’re working on, right-click on the .qmd file’s tab at the top of your Rstudio window, and click <strong>“Set Working Directory.”</strong></p>
+<p>It will print the code it ran in the console, it should look something along the lines of:</p>
+<p>setwd(“C:/Users/yourusername/your_project_folder/problem_set_2”)</p>
+<p>You can also set your working folder manually by running that code in R directly, and making changes as needed.</p>
+<p><strong>tip for you here:</strong> once you’re in a recognizable location, you can hit the “Tab” button on your keyboard and R will give you drop-down options to choose from.</p>
+<p>This is my location for the folder I worked out of for problem set 2:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/stace/GitHub Repositories/PHW251_R/problem_set_2/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="line-block"></div>
+<p>Again, this is specific to my own computer, so yours will look different, but the concept is the exact same.</p>
+<div style="page-break-after: always;"></div>
+<p>If you’re working out of the right folder, next question is:</p>
+</section>
+<section id="b-is-the-.csv-file-saved-in-that-same-folder" class="level4">
+<h4 class="anchored" data-anchor-id="b-is-the-.csv-file-saved-in-that-same-folder">(b) Is the .csv file saved in that same folder?</h4>
+<p>If you click on the “Files” tab in the bottom right window of your RStudio screen, you should see it listed there, along with your .qmd file.</p>
+<p>If you don’t see it in the folder, the easiest option is to just move it there.</p>
+<div class="line-block"></div>
+<p>Otherwise…</p>
+<p>If you are storing all the data files in a separate folder somewhere, let’s say one level up from where your problem_set_2 folder is, you can keep it there and pull it in using:</p>
+<p>” <strong>../</strong> ” before the name of the folder.</p>
+<p>Translating that code to normal speak, we are saying to R:</p>
+<p>“go one folder up from where we are now, then you’ll see a folder called <strong>data</strong>, and there’s a .csv file in that data folder called: <strong>co2_mm_mlo.csv</strong>. Bring that in here.”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>co2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"../data/co2_mm_mlo.csv"</span>, <span class="at">skip =</span> <span class="dv">51</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">row.names =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
