@@ -1,0 +1,25 @@
+/* global css styles */
+body {
+  margin: 1in !important;    
+}
+
+main.content {
+  margin: auto;
+  max-width: 8in;            
+}
+
+
+@page {
+  margin: 0in !important;
+  margin-top: 0.5in !important;
+}
+
+
+/* plot styles and formatting */
+
+.centered-plot {
+  text-align: center;
+  margin: 1rem !important; 
+  margin-top: 2rem !important;
+  width: fit-content;
+}

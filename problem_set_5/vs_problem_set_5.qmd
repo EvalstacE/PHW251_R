@@ -1,0 +1,321 @@
+---
+title: "PHW251 Problem Set 5"
+author: "Val Stacey"
+date: "10/12/2025"
+format:
+  html:
+    theme: cosmo
+    code-overflow: wrap
+    self-contained: true
+    css: "../www/styles.css"
+execute:
+  message: false
+  warning: false
+---
+
+```{r libraries}
+library(tibble)
+library(dplyr)
+library(tidyr)
+library(here)
+library(janitor)
+library(kableExtra)
+library(knitr)
+library(readxl)
+library(here)
+library(readr)
+library(ggplot2)
+```
+
+
+At this point in the course we have introduced a fair amount of code, which can be a lot to hold in our memory at once! Thankfully we we have search engines and these [helpful cheatsheets](https://rstudio.com/resources/cheatsheets/). You may find the Base R and Data Transformation Cheatsheet helpful.
+
+
+
+\newpage
+
+
+# Part 1
+
+### Question 1
+
+Use the readxl library and load two data sets from the "data/two_data_sheets.xlsx" file. There's a parameter that you can specify which sheet to load. In this case, we have data about rat reaction time in sheet 1 and home visits in sheet 2.
+
+```{r, echo=T, results="markup"}
+rats <- read_xlsx(path = "data/two_data_sheets.xlsx", sheet = "Sheet1") %>% clean_names()
+visits <- read_xlsx(path = "data/two_data_sheets.xlsx", sheet = "Sheet2") %>% clean_names()
+```
+
+\newpage
+
+
+
+### Question 2
+
+#### 2A
+
+For the rats data, pivot the data frame from wide to long format. We want the 1, 2, 3 columns, which represent the amount of cheese placed in a maze, to transform into a column called "cheese". The values in the cheese column will be the time, which represents the amount of time the rat took to complete the maze. 
+
+
+```{r}
+
+rats_lng <- rats %>%
+  pivot_longer(
+         cols = c("x1", "x2", "x3"),
+     names_to = "cheese", 
+    values_to = "time"
+  )
+  
+
+```
+
+
+#### 2B
+
+Please use the `head()` function to print the first few rows of your data frame.
+
+```{r}
+head(rats_lng, 6)
+```
+
+\newpage 
+
+### Question 3
+
+Use `summarize()` to compute the mean and standard deviation of the maze time depending on the amount of cheese in the maze.
+
+```{r}
+
+rats_sum <- rats_lng %>%
+  group_by(cheese) %>%
+  summarise(
+    mean_time = mean(time, na.rm = TRUE), 
+      st_time = sd(time, na.rm = TRUE),
+      .groups = "drop") %>%
+  arrange(cheese)
+
+rats_sum
+
+
+```
+
+\newpage
+
+### Question 4
+
+The home visits data is a record of how and where some interviews were conducted. 
+
+#### 4A 
+
+Pivot the home visits data frame from long to wide. We want the names from the action column to become unique columns and the values to represent the counts. 
+
+```{r}
+visits_wide <- visits %>%
+  pivot_wider(
+        id_cols = c("location", "year"),
+     names_from = "action", 
+    values_from = "count", 
+    values_fill = NA_integer_
+  )
+```
+
+#### 4B
+
+Please print the whole resulting dataframe.
+
+```{r, echo = FALSE}
+visits_wide %>%
+kbl(align = "lcccc",
+  col.names = c("Location", "Year", "Interviews", "Home Visits", "Questionnaires"),
+    caption = "Pivoted Home Visits Dataframe"
+) %>%
+  column_spec(1, bold = TRUE) %>%
+  
+kable_styling(
+    full_width = TRUE, 
+     bootstrap_options = c("striped", "hover", "condensed")
+)
+```
+
+
+\newpage
+
+## Part 2
+
+For this part we will use data from [New York City](https://data.cityofnewyork.us/Health/Children-Under-6-yrs-with-Elevated-Blood-Lead-Leve/tnry-kwh5) that tested children under 6 years old for elevated blood lead levels (BLL). [You can read more about the data on their website](https://data.cityofnewyork.us/Health/Children-Under-6-yrs-with-Elevated-Blood-Lead-Leve/tnry-kwh5).
+
+About the data:
+
+All NYC children are required to be tested for lead poisoning at around age 1 and age 2, and to be screened for risk of lead poisoning, and tested if at risk, up until age 6. These data are an indicator of children younger that 6 years of age tested in NYC in a given year with blood lead levels (BLL) greater than 5 mcg/dL. In 2012, CDC established that a blood lead level of 5 mcg/dL is the reference level for exposure to lead in children. This level is used to identify children who have blood lead levels higher than most children's levels. The reference level is determined by measuring the NHANES blood lead distribution in US children ages 1 to 5 years, and is reviewed every 4 years.
+
+```{r loading, include=F}
+
+file_path <- "data/Children_Under_6_yrs_with_Elevated_Blood_Lead_Levels__BLL_.csv"
+bll_nyc <- read_csv(file_path) %>% drop_na()
+colnames(bll_nyc) <- c("borough_id", "time_period", "bll_5", 
+                       "bll_10", "bll_15", "total_tested")
+
+```
+
+### Question 5
+
+In this question you will recreate the below table with the "kable" pacakge. Please make sure you follow all of the steps outlined in parts A though D. 
+
+![q1_tbl](data/question_1_table.png){width="50%"}
+
+
+You will need to calculate the BLL per 1,000, filter for years 2015-2016, and rename the boroughs based on the following coding scheme:
+
+* 1: Bronx
+* 2: Brooklyn
+* 3: Manhattan
+* 4: Queens
+* 5: Staten Island
+
+\newpage
+
+#### 5A
+
+First, filter your dataframe for the years 2015-2016 and rename the boroughs. If you make your borough names a factor, it will make your life easier when we create tables and graphs.
+
+```{r}
+nyc_A <- bll_nyc %>%
+  filter(between(time_period, 2015, 2016)) %>%
+  mutate(
+    borough = factor(borough_id, levels = 1:5,
+       labels = c("Bronx", "Brooklyn", "Manhattan", "Queens", "Staten Island"),
+      ordered = TRUE)
+  ) %>%
+  select(-borough_id) %>%
+  relocate(borough, .before = "time_period")
+```
+
+#### 5B
+
+Second, group and summarize the data to calculate the total *number* of children in each borough in each year that were tested and the number with blood lead levels that were greater than 5 mcg/dL, 10 mcg/dL, or 15 mcg/dL.
+
+```{r}
+nyc_B <- nyc_A %>%
+  group_by(borough, time_period) %>%
+  summarise(
+    total_tested = first(total_tested),
+    gr_5 = sum(bll_5),
+    gr_10 = sum(bll_10),
+    gr_15 = sum(bll_15),
+    .groups = "drop"
+  )
+```
+
+#### 5C
+
+Third, calculate the rate at which each blood lead level occurred in each year in each borough (BLL per 1,000).
+
+```{r}
+nyc_C <- nyc_B %>%
+  group_by(borough, time_period) %>%
+  mutate(
+    gr_5_rt = round((1000 * gr_5/total_tested),1),
+    gr_10_rt = round((1000 * gr_10/total_tested),1),
+    gr_15_rt = round((1000 * gr_15/total_tested),1)
+  )
+```
+
+
+\newpage
+
+#### 5D
+
+Now we have calculated all the numbers we need to recreate the table shown at the beginning of this question. Use `kable()` to produce your table.
+```{r}
+
+nyc_D <- nyc_C %>%
+  select(-c(total_tested, gr_5, gr_10, gr_15)) %>%
+  arrange(borough, time_period)
+
+bll_tble <- nyc_D %>%
+  kbl(align = "lcccc",
+      col.names = c("Borough", "Year", "BLL ≥5 µg/dL", "BLL ≥10 µg/dL", "BLL ≥15 µg/dL"),
+      caption = "<h4 style='text-align:center; font-weight:bold;color:#000'>
+                  BLL Rates per 1,000 Tested in New York City, 2015–2016</h4>",
+    escape = FALSE) %>%
+  column_spec(1, bold = TRUE) %>%
+  kable_styling(full_width = TRUE,
+    bootstrap_options = c("striped", "hover", "condensed"))
+
+bll_tble 
+```
+
+
+\newpage
+
+### Question 6
+
+In this question you will replicate the following bar chart. Since we want the graph to have an ascending order, we will need to factor borough_id with the levels in a different order than the default. Note that this graph covers the whole time period from the original dataset!
+
+[Here are the HEX codes used for the colors](https://colorswall.com/palette/454/):
+
+* #ff6600: orange
+* #003884: blue
+
+![q2_bar](data/question_2_bar.png){width=50%}
+
+\newpage
+
+
+#### 6A
+
+First, summarize the original dataset, counting only the number of kids with BLL > 5mcg/dL. Don't forget to change the order of factor borough_id in accordance with the graph above!
+```{r}
+bar_df <- bll_nyc %>%
+  group_by(borough_id) %>%
+  summarise(
+       gr_5 = sum(bll_5),
+    .groups = "drop") %>%
+  mutate(
+   borough = factor(borough_id, levels = 1:5,
+       labels = c("Bronx", "Brooklyn", "Manhattan", "Queens", "Staten Island"),
+      ordered = TRUE)
+  ) %>%
+  select(-borough_id) %>%
+  relocate(borough, .before = "gr_5") %>%
+  arrange(gr_5) %>%
+  mutate(borough = factor(borough, levels = borough))
+```
+
+
+\newpage
+
+#### 6B
+
+Then make the graph!
+```{r}
+p_6 <- ggplot(bar_df) + 
+  geom_col(
+    aes(x = borough, y = gr_5),
+    fill = "#ff6600",
+    color = "#003884"
+  ) +
+  theme_classic() +
+  labs(
+  title = "New York City: Number of Children with\nElevated Blood Lead Levels (≥5 µg/dL)",
+    subtitle = "2005–2016 by Borough",
+    x = "Borough",
+    y = "Count (BLL ≥5 µg/dL)"
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.subtitle = element_text(size = 12, hjust = 0.5),
+    axis.title.x = element_text(size = 12, face = "bold", margin = margin(t=15)),
+    axis.title.y = element_text(size = 12, face = "bold", margin = margin(r=15))
+  )
+```
+
+
+\newpage
+
+
+::: {.centered-plot}
+```{r, echo=FALSE, fig.width=6, fig.height=4.5}
+p_6
+```
+:::
