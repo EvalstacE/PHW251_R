@@ -1,17 +1,16 @@
 /* global css styles */
 body {
-  margin: 1in !important;    
+  margin: 0.5in !important;    
 }
 
 main.content {
-  margin: auto;
+  margin: 0in !important
   max-width: 8in;            
 }
 
 
 @page {
-  margin: 0in !important;
-  margin-top: 0.5in !important;
+  margin: 0.5in !important;
 }
 
 
@@ -22,4 +21,26 @@ main.content {
   margin: 1rem !important; 
   margin-top: 2rem !important;
   width: fit-content;
+}
+
+
+
+/* Inline code styling (e.g., `dplyr()`) */
+code {
+  font-size: .95em;
+  font-weight: bold;
+  background-color: #fdf2a6 !important;
+  color: #400850;        /* subtle blue tone to match your theme */
+  padding: 2px 4px;
+  border-radius: 4px;
+  border: 1px solid #fbe75c;
+}
+
+/* Prevent styling code blocks inside fenced code chunks */
+pre code {
+  background-color: transparent !important;;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: 1em;
 }
